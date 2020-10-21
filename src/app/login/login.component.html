@@ -1,0 +1,112 @@
+<div class="login-page">
+    <mat-card class="mat-elevation-z12">
+      <mat-card-title style="text-align:center;">Login/Cadastrar</mat-card-title>
+        <div class="alert alert-success" *ngIf="mensagemSucesso">
+            {{ mensagemSucesso }}
+        </div>
+        <div class="alert alert-danger" *ngFor="let erro of errors">
+            {{ erro }}
+        </div>
+      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+        <mat-tab label="Login">
+          <mat-card-content>
+              <form action="">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    required
+                    name="input_email"
+                    ngModel
+                    #input_email="ngModel">
+                    <mat-error *ngIf="input_email.invalid">Email é obrigatório</mat-error>
+                  <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Senha"
+                    type="password"
+                    required
+                    minlength="3"
+                    maxlength="10"
+                    name="input_senha"
+                    ngModel
+                    #input_senha="ngModel">
+                    <mat-error
+                      *ngIf="input_senha.errors && input_senha.errors.required">
+                      Senha é obrigatório
+                    </mat-error>
+                  <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+                <button type="button"
+                  (click)="logar()"
+                  mat-raised-button
+                  color="primary"
+                  class="entrar-button">
+                  Entrar
+                </button>
+              </form>
+            </mat-card-content>
+        </mat-tab>
+        <mat-tab label="Cadastrar">
+          <mat-card-content>
+            <form action="">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Usuario"
+                  required
+                  name="input_usuario"
+                  [(ngModel)]="username"
+                  #input_usuario="ngModel">
+                <mat-icon matSuffix>perm_identity</mat-icon>
+                <mat-error
+                  *ngIf="input_usuario.invalid">
+                  Usuário é obrigatório
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Email"
+                  required
+                  name="input_email"
+                  [(ngModel)]="email"
+                  #input_email="ngModel">
+                  <mat-error *ngIf="input_email.invalid">Email é obrigatório</mat-error>
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Senha"
+                  type="password"
+                  required
+                  minlength="3"
+                  name="input_senha"
+                  [(ngModel)]="password"
+                  #input_senha="ngModel">
+                  <mat-error
+                    *ngIf="input_senha.errors && input_senha.errors.required">
+                    Senha é obrigatório
+                  </mat-error>
+                  <mat-error
+                    *ngIf="input_senha.errors && input_senha.errors.minlength">
+                    Mínimo 3 caracteres e máximo 10 caracteres
+                  </mat-error>
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+              <button (click)="cadastrar()"
+                mat-raised-button
+                color="primary"
+                class="entrar-button">
+                Cadastrar
+              </button>
+            </form>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+  
